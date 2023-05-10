@@ -108,15 +108,18 @@ module.exports = {
             /*
                 Workaround single module style by deleting the entire
                 style tags and contents that matches the other brand
+
+                uncomment to see module "work" but for two styles with modules in a single file only,
+                where both contain different brands to be filtered out. Doesn't work with two of the same
              */
-              {
-                test: /\.vue$/,
-                use: createLoader(function(source, map) {
-                    const brandStyleRemoval = new RegExp(`(<style)(.*)(brand=("|')?${otherBrands[0]}("|')?)(.*?)>(.|\n)*?(<\/style>)`, 'gmi');
-                    const sourceUnbranded = source?.replace(brandStyleRemoval, '');
-                    return sourceUnbranded ?? source
-                  }),
-              },
+            //   {
+            //     test: /\.vue$/,
+            //     use: createLoader(function(source, map) {
+            //         const brandStyleRemoval = new RegExp(`(<style)(.*)(brand=("|')?${otherBrands[0]}("|')?)(.*?)>(.|\n)*?(<\/style>)`, 'gmi');
+            //         const sourceUnbranded = source?.replace(brandStyleRemoval, '');
+            //         return sourceUnbranded ?? source
+            //       }),
+            //   },
             {
                 test: /\.js$/,
                 use: {
